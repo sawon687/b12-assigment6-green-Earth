@@ -14,6 +14,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <!-- css link -->
  <link rel="stylesheet" href="../stylee/index.css">
+ <!-- font icon cdn link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
@@ -69,53 +71,41 @@
 
         </section>
         <!-- choose your trees section -->
-        <section class="bg-[#F0FDF4] ">
-            <h1 class="text-center text-4xl py-10 font-medium ">Choose Your Trees</h1>
-            <div class="w-10/11 flex justify-between gap-5 mx-auto  ">
-                  
-                
-           <div class="grid col-span-2 w-[220px]">
+        
+         <section class="bg-[#F0FDF4] py-10">
+  <h1 class="text-center text-4xl font-medium mb-8">Choose Your Trees</h1>
 
-            <h1 class="text-xl font-semibold">Categories</h1>
-            <div id="catagore-container">
-           <ul id="menu-container" class="menu  space-y-2 rounded-box w-58">
-         <li class="hover:bg-[#15803D] hover:text-white py-1.5 pl-2 rounded-sm font-normal text-base">All tree</li>
+  <!-- Main container -->
+  <div class="w-11/12 mx-auto flex flex-col md:flex-row gap-3">
 
-               </ul>
-           
-            </div>
-           </div>
-   <div class="grid col-span-7 border-2 ">
-<!-- card container -->
-   <div id="card-container" class="grid grid-cols-3 place-content-center px-3 gap-5">
-    <div class="card bg-base-100 w-72 h-[350px] pt-3 shadow-sm">
-  <figure class="p-3 ">
-    <img class="rounded-lg h-[186px] "
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes" />
-  </figure>
-  <div class="p-4 space-y-2 ">
-    <h2 class="card-title">Mango Tree</h2>
-    <p class="text-[12px] font-normal">A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green</p>
-    <div class="card-actions justify-between items-center">
-      <button class="btn btn-sm bg-[#DCFCE7] rounded-4xl">Fruit tree</button>
-      <h1 class="text-[#1f2937] text-sm font-semibold">৳500</h1>
+    <!-- Sidebar / Categories -->
+    <div class="md:w-2/12  p-4 ">
+      <h2 class="text-xl font-semibold mb-4 text-center md:text-left">Categories</h2>
+      <ul id="menu-container" 
+          class="flex md:flex-col flex-row gap-3 md:gap-2 justify-center md:justify-start flex-wrap">
+        <!-- Dynamic menu items -->
+      </ul>
     </div>
+
+    <!-- Card container -->
+    <div class="flex-1 flex justify-center">
+      <div id="card-container" 
+           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-4">
+        <!-- Dynamic cards -->
+      </div>
+    </div>
+
+    <!-- Cart history -->
+    <div class="md:w-2/12 bg-white rounded-lg shadow p-4 ">
+      <h2 class="text-xl font-semibold mb-4 text-center md:text-left">Your Cart</h2>
+      <div id="cart-history" class="">
+        <!-- Cart items -->
     
+    </div>
+
   </div>
-  <div class="px-3 pb-3">
-    <button  class="btn h-[2.3rem]  bg-[#15803D] w-full  text-[#ffffff] rounded-3xl">Add to Cart</button>
-  </div>
-</div>
- 
-</div>
-                
-           </div>
-           <div class="bg-pink-700 grid col-span-2 w-[220px]">
-                <h1>my name is sawon</h1>
-           </div>
-            </div>
-        </section>
+</section>
+
      </main>
     <script src="../script/index.js"></script>
 </body>
