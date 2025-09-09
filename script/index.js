@@ -2,21 +2,28 @@
 
 // allTReeload
 const allTreeLoad=async()=>{
+   manageLoading(true);
     const url=`https://openapi.programming-hero.com/api/plants`
      const res=await fetch(url);
      const data=await res.json();
      
      displayAllCategore(data.plants)
-     
+     manageLoading(false);
 }
-// "plants": [
-// {
-// "id": 1,
-// "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
-// "name": "Mango Tree",
-// "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
-// "category": "Fruit Tree",
-// "price": 500
+// manage lodind
+ const manageLoading=(status)=>
+ {
+          if(status==true)
+          {
+            document.getElementById('loading-container').classList.remove('hidden');
+             document.getElementById('card-container').classList.add('hidden');
+          }
+          else{
+            document.getElementById('loading-container').classList.add('hidden');
+            document.getElementById('card-container').classList.remove('hidden');
+          }
+ }
+
 const removeActive=()=>{
     
    const  catagoreActive= document.querySelectorAll('.catagore-btn')
@@ -25,6 +32,7 @@ const removeActive=()=>{
 }
 // loadcategorePrucduct section
 const  loadCategorePrucduct=async(id)=>{
+   manageLoading(true);
         const url=`https://openapi.programming-hero.com/api/category/${id}`;
         console.log(url)
         const res= await fetch(url);
@@ -35,6 +43,7 @@ const  loadCategorePrucduct=async(id)=>{
         clickedBtn.classList.add('bg-green-700','text-center','md:text-left','w-auto','px-2','md:w-full', 'text-white');
     }
 displayAllCategore(data.plants)
+ manageLoading(false);
 
 }
 
@@ -50,7 +59,7 @@ document.getElementById('navBtn-11').addEventListener('click',()=>
 
 // display all card  section
 const displayAllCategore=(cards)=>{
-      
+       
 const cardContainer= document.getElementById('card-container');
 cardContainer.innerHTML=''
         cards.forEach(card=>{
@@ -66,7 +75,7 @@ cardContainer.innerHTML=''
     <h2 id="${card.id}" onclick=''  class="card-title">${card.name}</h2>
     <p class="text-[12px] font-normal">${card.description}</p>
     <div class="card-actions justify-between items-center">
-      <button class="btn btn-sm bg-[#DCFCE7] rounded-4xl">Fruit tree</button>
+      <button class="btn btn-sm bg-[#DCFCE7] rounded-4xl">${card.category}</button>
       <h1 id='price' class="text-[#1f2937] text-sm font-semibold">৳  <span class='pricecart'>${card.price}</span></h1>
     </div>
     
@@ -78,14 +87,16 @@ cardContainer.innerHTML=''
 
             cardContainer.append(div);
             // call tree info function pass id
-           
+            
             
         })
+     
 }
 allTreeLoad()
 
 // loadsidemenu
 const loadMenu=async () => {
+  manageLoading(true);
     const url='https://openapi.programming-hero.com/api/categories';
     const res=await fetch(url);
     const data=await res.json();
@@ -94,7 +105,7 @@ const loadMenu=async () => {
 }
 // loadsidemenuDisplay
 const displaymenu=(datas)=>{
-    
+     manageLoading(true)
     const menuContainer=document.getElementById('menu-container');
      
     datas.forEach(data => {
@@ -102,7 +113,7 @@ const displaymenu=(datas)=>{
         const navBtn=document.createElement('li')
          navBtn.id=`navBtn-${data.id}`
     navBtn.innerText=`${data.category_name}`
-    navBtn.classList.add('catagore-btn','btn-sm' ,'py-1.5', 'pl-2','rounded-sm')
+    navBtn.classList.add('catagore-btn','btn-sm','cursor-pointer' ,'py-1.5', 'pl-2','rounded-sm')
   navBtn.addEventListener('click',function (e) {
     
   
@@ -111,8 +122,9 @@ const displaymenu=(datas)=>{
         loadCategorePrucduct(`${data.id}`)
   })
     menuContainer.appendChild(navBtn)
+     manageLoading(false)
     });
-
+ manageLoading(false);
     
      
     
@@ -130,6 +142,7 @@ document.addEventListener("click", (e) => {
            
           const card= e.target.closest('.card');//target card dom traversing
         const cardTitle=card.querySelector('h2').innerText;
+        alert(`${cardTitle} has been added to cart`)
         const price=card.querySelector('.pricecart').innerText;
        console.log(price)
    
@@ -141,7 +154,7 @@ document.addEventListener("click", (e) => {
             <h6 class="text-sm">${cardTitle}</h6>
            <p class="text-xs">৳${price}</p>
           </div>
-           <button class="removeBtn text-xs text-gray-400"><i class="fa-solid fa-x"></i></button>
+           <button class="removeBtn cursor-pointer text-xs text-gray-400"><i class="fa-solid fa-x"></i></button>
          </div>
          
          
