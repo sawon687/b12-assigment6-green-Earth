@@ -7,6 +7,7 @@ const allTreeLoad=async()=>{
      const data=await res.json();
      
      displayAllCategore(data.plants)
+     
 }
 // "plants": [
 // {
@@ -37,9 +38,19 @@ displayAllCategore(data.plants)
 
 }
 
-// display all catagore section
+// all tree btn
+
+document.getElementById('navBtn-11').addEventListener('click',()=>
+{   
+  removeActive();
+   document.getElementById('navBtn-11').classList.add('bg-green-700','text-center','md:text-left','w-auto','px-2','md:w-full', 'text-white')
+
+})
+
+
+// display all card  section
 const displayAllCategore=(cards)=>{
-       
+      
 const cardContainer= document.getElementById('card-container');
 cardContainer.innerHTML=''
         cards.forEach(card=>{
@@ -52,7 +63,7 @@ cardContainer.innerHTML=''
       alt="Shoes" />
   </figure>
   <div class="px-4 py-2 space-y-2 flex-1 h-[70px] ">
-    <h2 class="card-title">${card.name}</h2>
+    <h2 id="${card.id}" onclick=''  class="card-title">${card.name}</h2>
     <p class="text-[12px] font-normal">${card.description}</p>
     <div class="card-actions justify-between items-center">
       <button class="btn btn-sm bg-[#DCFCE7] rounded-4xl">Fruit tree</button>
@@ -66,6 +77,9 @@ cardContainer.innerHTML=''
 </div>`
 
             cardContainer.append(div);
+            // call tree info function pass id
+           
+            
         })
 }
 allTreeLoad()
@@ -80,7 +94,7 @@ const loadMenu=async () => {
 }
 // loadsidemenuDisplay
 const displaymenu=(datas)=>{
-    console.log(datas)
+    
     const menuContainer=document.getElementById('menu-container');
      
     datas.forEach(data => {
@@ -103,12 +117,15 @@ const displaymenu=(datas)=>{
      
     
 }
+// 
+
+
 
 const cartHistory=()=>{
   let totalPrice=0;
-// delation cart and remove carthistory
+// delation cart and remove carthistory all webpage deltation
 document.addEventListener("click", (e) => {
-//  click target add to cart btn and total sum product price
+//  click target add to cart history  and total sum product price
    if(e.target.classList.contains('cartBtn')){
            
           const card= e.target.closest('.card');//target card dom traversing
@@ -148,7 +165,7 @@ document.addEventListener("click", (e) => {
          cartHistory.appendChild(totalBox);
    }
 
-//  click condition remove btn  total cost of sub total
+//  click condition remove cart box  total cost of sub total
      if(e.target.classList.contains('removeBtn')|| e.target.classList.contains('fa-x'))
      {
            const cartItem=e.target.closest('.cartItem');
@@ -165,9 +182,56 @@ document.addEventListener("click", (e) => {
              }    
       }
 
+      //tree info dynamic a
+
+      if(e.target.classList.contains('card-title'))
+      {    
+              
+            loadtreeInfo(e.target.id);
+
+
+      }
+
 });
 }
 
 cartHistory();
 
+// load side catagoremenu call
 loadMenu()
+
+// load tree info
+const loadtreeInfo=async(id)=>{
+     
+    const url=`https://openapi.programming-hero.com/api/plant/${id}`
+    const res =await fetch(url);
+    const info=await res.json();
+   
+    console.log(info)
+    displaytreeInfo(info.plants)
+}
+
+
+
+// display card info
+ let displaytreeInfo=(info)=>{
+
+              document.getElementById('my_modal_5').showModal();
+         const infoContainer=document.getElementById('tree-infoContainer')
+          infoContainer.innerHTML='';
+         const div=document.createElement('div');
+         div.innerHTML=` <h1 class="font-bold mb-2 text-xl">${info.name}</h1>
+        <figure><img class=" h-[300px] s w-full object-cover rounded-lg" src=${info.image} alt=""></figure>
+           <h2 class="font-bold mt-2">${info.category}</h2>
+     <p><span class="font-bold">Price:</span> ৳${info.price}</p>
+     <p class="font-bold">Description: <span class="font-light">${info.description}</span></p>
+        <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>`
+
+    infoContainer.appendChild(div);
+        
+         }
