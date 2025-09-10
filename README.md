@@ -1,5 +1,6 @@
 
 1) What is the difference between var, let, and const?
+   
    ans: var is a function scope and hosting is undifined.var is allow redeclaration and reAssignment .
    
    let: let is block scope,  hoisted but in tempural deadZone.let not allow  redeclaration and reAssignment.
