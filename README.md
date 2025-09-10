@@ -9,6 +9,7 @@
    
 
 3) What is the difference between map(), forEach(), and filter()?
+   
    ans:
    map:Map is a arry method .it takes a Callback function and return a new Array with same length as original Array.
    
