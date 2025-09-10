@@ -16,11 +16,11 @@ const allTreeLoad=async()=>{
           if(status==true)
           {
             document.getElementById('loading-container').classList.remove('hidden');
-             document.getElementById('card-container').classList.add('hidden');
+             document.getElementById('choose_trees').classList.add('hidden');
           }
           else{
             document.getElementById('loading-container').classList.add('hidden');
-            document.getElementById('card-container').classList.remove('hidden');
+            document.getElementById('choose_trees').classList.remove('hidden');
           }
  }
 
@@ -160,7 +160,7 @@ document.addEventListener("click", (e) => {
          
          
          `
-          cartHistory.appendChild(div);
+         cartHistory.appendChild(div);
 
            totalPrice=Number(totalPrice) + Number(price);
            console.log(totalPrice);
@@ -195,7 +195,7 @@ document.addEventListener("click", (e) => {
              }    
       }
 
-      //tree info dynamic a
+      //tree info dynamic 
 
       if(e.target.classList.contains('card-title'))
       {    
